@@ -26,13 +26,19 @@ def webhook():
     print("Request:")
     print(json.dumps(req, indent=4))
 
-    res = processRequest(req)
+    baseurl = "https://52.27.181.81:443/engine/apiai_webhook"
+    result = urlopen(baseurl).read()
+    data = json.loads(result)
 
-    res = json.dumps(res, indent=4)
-    # print(res)
-    r = make_response(res)
-    r.headers['Content-Type'] = 'application/json'
-    return r
+    return data
+
+    # res = processRequest(req)
+    #
+    # res = json.dumps(res, indent=4)
+    # # print(res)
+    # r = make_response(res)
+    # r.headers['Content-Type'] = 'application/json'
+    # return r
 
 
 def processRequest(req):
